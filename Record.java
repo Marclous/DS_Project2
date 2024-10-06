@@ -12,9 +12,28 @@ public class Record {
     private boolean login;
     private String username;
     private Date time;
-
+    /**
+     * Constructs a new Record object with terminal number, login status, username, and time
+     * @param terminal terminal number that the user used to login
+     * @param login the user's login status
+     * @param username  user's name
+     * @param time login or logout time
+     */
     public Record(int terminal, boolean login, String username, Date time) {
+        if (terminal <= 0) {
+            throw new IllegalArgumentException("Terminal number must be a positive integer.");
+        }
+        if (username == null || username.isEmpty()) {
+            throw new IllegalArgumentException("Username cannot be null or empty.");
+        }
+        if (time == null) {
+            throw new IllegalArgumentException("Time cannot be null.");
+        }
         
+        this.terminal = terminal;
+        this.login = login;
+        this.username = username;
+        this.time = time;
     }
 
     // Getter methods (Accessors)
