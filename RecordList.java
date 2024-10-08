@@ -47,7 +47,7 @@ public class RecordList extends ArrayList<Record> {
                 } else if (record.isLogout() && loginRecord != null && record.getTerminal() == loginRecord.getTerminal()) {
                     // If we find a logout for the same terminal, pair it with the current login
                     logoutRecord = record;
-                    break; // We found the first full session, no need to continue
+                    break; 
                 }else if (record.isLogout() && loginRecord == null) {
                     // Logout found without a prior matching login, this is an error
                     throw new IllegalArgumentException("Found logout without a matching login for user: " + user);

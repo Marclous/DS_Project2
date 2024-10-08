@@ -27,17 +27,26 @@ public class Session {
         if (login == null) {
             throw new IllegalArgumentException("Login record cannot be null.");
         }
+        if (!login.isLogin() ) {
+            throw new IllegalArgumentException("Invalid Login status");
+        }
         if (logout != null) {
+            if (!logout.isLogout()) {
+                throw new IllegalArgumentException("Invalid Logout status");
+            }
             if (!login.getUsername().equals(logout.getUsername())) {
                 throw new IllegalArgumentException("Usernames must match for a valid session.");
             }
+            
             if (login.getTerminal() != logout.getTerminal()) {
                 throw new IllegalArgumentException("Terminal numbers must match for a valid session.");
             }
+
             if (login.getTime().after(logout.getTime())) {
                 throw new IllegalArgumentException("Login time cannot be after logout time.");
             }
         }
+        
         this.login = login;
         this.logout = logout;
     }
